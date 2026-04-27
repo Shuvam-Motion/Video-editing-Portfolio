@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Animation Library Script -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEMATIC PORTFOLIO | Your Name</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Cinematic Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation (Sticky Header) -->
+    <header class="header">
+        <div class="container nav-content">
+            <div class="logo">SHUVAM STUDIO</div>
+            <nav>
+                <a href="#work">WORK</a>
+                <a href="#philosophy">ABOUT</a>
+                <a href="#contact" class="cta-nav-button">LET'S WORK</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 🎬 HERO SECTION -->
+        <section id="hero" class="hero-section" data-aos="zoom-in">
+            <div class="hero-video-bg">
+                <!-- Placeholder for cinematic background video loop -->
+                <video autoplay loop playsinline>
+                    <source src="video/hero-background2.mp4" type="video/mp4">
+                </video>
+                
+                <!-- Video Control Panel - Mute/Unmute Button -->
+                <div class="video-controls-panel">
+                    <button id="hero-video-mute-btn" class="video-control-btn" aria-label="Toggle video mute" type="button" title="Mute/Unmute">
+                        <span class="control-icon">🔇</span>
+                    </button>
+                    <button id="fullscreen-btn" class="video-control-btn" aria-label="Toggle fullscreen mode" type="button" title="Toggle Fullscreen">
+                        <span class="control-icon">⛶</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-content container" data-aos="fade-up">
+                <h1 class="headline" data-aos-delay="300">We Build Visual Experiences</h1>
+                <p class="subheading" data-aos="fade-up" data-aos-delay="600">Transforming raw footage into high-impact cinematic narratives that command attention and drive action.</p>
+                <a href="#work" class="cta-primary-button">VIEW PORTFOLIO PROJECTS</a>
+            </div>
+        </section>
+
+        <!-- 🎞️ PORTFOLIO GRID (The Hook) -->
+        <section id="work" class="portfolio-section container">
+            <h2 class="section-title">Featured Work. Engineered Stories.</h2>
+            <div class="portfolio-grid">
+
+            <!-- Project Card 1 -->
+                <article class="project-card">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/7.jpg" alt="Luxury Product Ad">
+                    <div class="card-info" data-aos="fade-up" data-aos-delay="340">
+                        <h3>Inspired Drake 3D Image Music Video</h3>
+                        <p class="description">A high-energy edit that transforms static images into a fluid music video using 3D camera motion, beat sync, and sharp pacing—proving you don’t need footage to create impact.</p>
+                        <a href="reel-project3.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 2 -->
+                <article class="project-card">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/5.jpg" alt="Luxury Product Ad">
+                    <div class="card-info" data-aos="fade-up" data-aos-delay="340">
+                        <h3>Liquid Death : High-Impact 39s Documentary Short</h3>
+                        <p class="description">A high-energy short edit that blends documentary storytelling with aggressive pacing and bold visuals—designed to reflect the raw, disruptive identity of Liquid Death and keep viewers locked in.</p>
+                        <a href="reel-project.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 3 -->
+                <article class="project-card">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/6.jpg" alt="Luxury Product Ad">
+                    <div class="card-info" data-aos="fade-up" data-aos-delay="340">
+                        <h3>10M Mobile App : 54s Motivational Tech Edit</h3>
+                        <p class="description">A fast-paced narrative-driven video showing that building a 10M user app isn’t about flashy ideas—it’s about consistency and desire. Crafted with clean pacing, strong visuals, and focused storytelling to keep the message clear and engaging from start to finish.</p>
+                        <a href="reel-project2.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 4 -->
+                <article class="project-card">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/8.jpg" alt="Luxury Product Ad">
+                    <div class="card-info" data-aos="fade-up" data-aos-delay="340">
+                        <h3>New Era Of Video Editing</h3>
+                        <p class="description">A high-energy short edit that blends documentary storytelling with dynamic visual effects.</p>
+                        <a href="reel-project4.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 5 -->
+                <article class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-content-wrapper">
+                    <img src="img/1.jpg" alt="The Power of Presence: Zindex ITC Cinematic Outro">
+                    <div class="card-info">
+                        <h3>Fintech Brand Launch</h3>
+                        <p class="description">Conceptualizing and executing the complete visual identity for Zindex ITC. This simple outro, serving a powerful cinematic anchor for their brand narrative. I focused on integrating 'gravitas' with modern technical energy, ensuring the video resonates as a pillar of their digital presence and market leadership.</p>
+                        <a href="project-detail.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 6 -->
+                <article class="project-card" data-aos="fade-up" data-aos-delay="320">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/2.jpg" alt="Documentary Film">
+                    <div class="card-info">
+                        <h3>Create High-Impact Montage That Capture Attention Instantly</h3>
+                        <p class="description">I turn raw footage into fast-paced montage videos and short-form content designed to stop the scroll and keep viewers engaged. From cinematic cuts to high-energy edits, every project is built with precision, rhythm, and purpose—so your content doesn’t just look good, it performs.</p>
+                        <a href="project-detail 2.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+
+                <!-- Project Card 7 -->
+                <article class="project-card">
+                    <div class="card-content-wrapper"> 
+                    <img src="img/3.jpg" alt="Luxury Product Ad">
+                    <div class="card-info" data-aos="fade-up" data-aos-delay="340">
+                        <h3>Cinematic Mockup Showcase Edit</h3>
+                        <p class="description">From high-energy montage edits to cinematic mockup presentations and short-form content, I turn the raw ideas into visually striking videos that capture attention instantly. Every edit is crafted with precision, motion, and purpose—so your content doesn’t just look good, it stands out and keeps people watching.</p>
+                        <a href="project-detail 3.html" class="cta-secondary-button">View Case Study →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 📜 ABOUT ME / PHILOSOPHY -->
+        <section id="philosophy" class="philosophy-section">
+            <div class="container about-grid" data-aos="fade-right">
+                <div class="bio-text-column">
+                    <h2 class="section-title">I TURN YOUR CLIPS INTO HIGH-RETENTION VIDEOS THAT GROW YOUR AUDIENCE</h2>
+                    
+                    <h3>Who I Am</h3>
+                    <p>I am a post-production specialist in high-energy <strong>montage</strong> videos and <strong>short-form content</strong> that grabs attention instantly. I don’t just cut clips, I shape pacing, music, and visuals to keep viewers engaged from the first second to the last. I help creators and brands turn raw footage into scroll-stopping content that performs on YouTube, TikTok, and Reels.</p>
+
+                    <h3 style="margin-top: 2rem;">My Process Philosophy</h3>
+                    <p><strong>I believe attention comes first, everything else follows.</strong> I break down raw footage to find the strongest moments, then build the edit around pacing, rhythm, and impact. Every cut, beat, and visual choice is intentional—designed to keep viewers engaged and watching till the end. Whether it’s a montage or a short, I focus on turning ordinary clips into content that feels fast, dynamic, and impossible to ignore.</p>
+
+                    <h3 style="margin-top: 2rem;">The Partnership Promise</h3>
+                    <p>When you work with me, you’re not getting average editing. You’re getting contents built to perform. I deliver fast, communicate clearly, and make sure every video is crafted with purpose, not just style. From pacing to final polish, every detail is designed to hold attention and keep viewers watching. <strong>My goal is simple: create videos that people don’t skip—and that actually make an impact.</strong></p>
+                </div>
+                <div class="bio-image-column">
+                    <img src="img/Profolio Photo/Shuvam.jpg" alt="Portfolio Designer Profile Picture">
+                </div>
+            </div>
+        </section>
+
+        <!-- ✉️ CONTACT SECTION -->
+        <section id="contact" class="contact-section">
+            <div class="container" data-aos="fade-left">
+                <h2 class="section-title">Let’s Craft More Than Just A Video.</h2>
+                <p class="sub-headline">The conversation starts with a vision. Tell me about your scope, and let's structure the perfect cinematic solution.</p>
+                
+                <form class="contact-form contact-form-disabled" action="#" method="POST" id="contact-form">
+                    <!-- Maintenance Notice Overlay -->
+                    <div class="maintenance-overlay">
+                        <div class="maintenance-notice">
+                            <div class="maintenance-icon">🔧</div>
+                            <h3 class="maintenance-title">System Under Maintenance</h3>
+                            <p class="maintenance-message">We're currently upgrading our contact system to serve you better. We'll be back shortly!</p>
+                            <p class="maintenance-contact">In the meantime, please reach out directly at:<br><strong><a href="mailto:shuvamsaha044@gmail.com">shuvamsaha044@gmail.com</a></strong></p>
+                            <p class="maintenance-response">⏱️ We respond within 24 hours</p>
+                        </div>
+                    </div>
+                    <!-- Form Content (Disabled but Visible) -->
+                    <div class="form-group">
+                        <label for="name">Your Name / Company</label>
+                        <input type="text" id="name" name="name" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Scope & Details *</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Please include your core creative goal, desired budget range, and project timeline to ensure the most accurate proposal." disabled></textarea>
+                    </div>
+                    <button type="submit" class="cta-primary-button full-width" disabled>START THE PROCESS</button>
+                    <p class="disclaimer">Ready to start? We respond to all inquiries within 24 hours.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shuvam Studio. All Rights Reserved. | Cinematic Design Portfolio.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    // Initialize AOS library
+    AOS.init({
+        duration: 800,
+        once: true   
+    });
+</script>
+</body>
+</html>

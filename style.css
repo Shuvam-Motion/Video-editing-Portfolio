@@ -1,0 +1,974 @@
+/* ========================================
+    1. GLOBAL RESET & TYPOGRAPHY
+======================================= */
+
+:root {
+    /* Cinematic Palette */
+    --color-dark: #0A0A0A; 
+    --color-medium-dark: #121212; 
+    --color-accent: #00E0FF; /* Electric Cyan */
+    --color-light: #E0E0E0;
+    --color-secondary-bg: #181818;
+    --color-text: #D0D0D0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll issues */
+}
+
+body.page-transition-out {
+    animation: pageTransitionOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+body.page-transition-in {
+    animation: pageTransitionIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pageTransitionOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+    }
+}
+
+@keyframes pageTransitionIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: var(--color-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.portfolio-section .section-title {
+    margin-left: 40px;
+}
+
+/* ========================================
+    2. HEADER & NAVIGATION (Sticky)
+======================================= */
+
+.header {
+    background-color: rgba(10, 10, 10, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    border-bottom: 1px solid #222;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-accent);
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+.cta-nav-button {
+    padding: 8px 15px;
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    border-radius: 4px;
+    text-decoration: none !important;
+    font-weight: 700;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    will-change: transform, box-shadow;
+}
+
+.cta-nav-button:hover {
+    transform: scale(1.05) translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 224, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.cta-nav-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 224, 255, 0.2);
+}
+
+
+/* ========================================
+    3. BUTTONS & CTA STYLING
+======================================= */
+
+.cta-primary-button, .cta-secondary-button {
+    display: inline-block;
+    padding: 14px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-align: center;
+    position: relative;
+    will-change: transform, box-shadow, background-color;
+}
+
+.cta-primary-button {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    border: none;
+    cursor: pointer;
+}
+
+.cta-primary-button:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 224, 255, 0.35), 0 6px 14px rgba(0, 224, 255, 0.25);
+    background-color: #d8b36a;
+}
+
+.cta-primary-button:active {
+    transform: scale(0.98) translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 224, 255, 0.2);
+}
+
+.cta-secondary-button {
+    background: none;
+    color: var(--color-accent);
+    padding: 0;
+    margin-top: 10px;
+    display: block; /* makes it full width under the card */
+}
+
+.cta-secondary-button:hover {
+    color: var(--color-light);
+    text-decoration: underline;
+    transform: scale(1.05) translateX(4px);
+}
+
+.cta-secondary-button:active {
+    transform: scale(0.98) translateX(2px);
+}
+
+/* ========================================
+    4. HOME PAGE SPECIFIC STYLING (index.html)
+======================================= */
+
+/* HERO SECTION */
+.hero-section {
+    position: relative;
+    height: 80vh; /* Viewport Height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.project-hero-section {
+    height: 60vh;
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Fallback color */
+    /* In a real project, this would be a video element: */
+    /* background: url('path/to/video-loop-placeholder.mp4') center center no-repeat; background-size: cover; */
+    opacity: 0.7; /* Dim the background for text readability */
+    z-index: 1;
+}
+
+.hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================================
+   VIDEO CONTROLS ANIMATION PANEL (Enhanced)
+======================================= */
+
+.video-controls-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                visibility 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10;
+}
+
+/* Show controls on video container hover */
+.hero-video-bg:hover .video-controls-panel {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-control-btn {
+    background: rgba(0, 224, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(0, 224, 255, 0.3);
+    will-change: transform, background, box-shadow;
+    padding: 0;
+    position: relative;
+    z-index: 101;
+}
+
+/* Hover state - increases prominence */
+.video-control-btn:hover {
+    transform: scale(1.15);
+    background: rgba(0, 224, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 224, 255, 0.5);
+}
+
+/* Active state - click feedback */
+.video-control-btn:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgba(0, 224, 255, 0.25);
+}
+
+/* Icon styling */
+.control-icon {
+    display: block;
+    line-height: 1;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 1;
+    z-index: 102;
+}
+
+/* Icon animation on mute state change */
+.video-control-btn.mute-state-change .control-icon {
+    animation: iconPulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Fullscreen button state changes */
+.video-control-btn.fullscreen-active .control-icon {
+    animation: expandIcon 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes expandIcon {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.15) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 0;
+}
+
+.headline {
+    font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive headline size */
+    margin-bottom: 15px;
+    color: var(--color-light);
+    text-transform: uppercase;
+}
+
+.subheading {
+    font-size: 1.4rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: #a0a0a0;
+}
+
+/* PORTFOLIO GRID */
+.portfolio-section {
+    padding: 80px 0;
+    background-color: var(--color-medium-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(0, 224, 255, 0.3) 0deg,
+        rgba(0, 224, 255, 0.15) 45deg,
+        rgba(0, 224, 255, 0) 90deg,
+        rgba(0, 224, 255, 0) 270deg,
+        rgba(0, 224, 255, 0.15) 315deg,
+        rgba(0, 224, 255, 0.3) 360deg
+    );
+    animation: orbitingGlow 8s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.portfolio-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes orbitingGlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 100%;
+}
+
+.project-card {
+    background: #121212;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, box-shadow;
+    cursor: pointer;
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 224, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.project-card.card-exit {
+    animation: cardExit 0.7s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+@keyframes cardExit {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.85) translateY(-40px);
+    }
+}
+
+.card-content-wrapper {
+    display: block; 
+    overflow: hidden; /* Hides any parts that might try to escape the card */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform, box-shadow;
+}
+
+.project-card:hover .card-content-wrapper {
+    /* The wrapper now performs the lift */
+    transform: translateY(-10px) scale(1.01); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.card-content-wrapper img {
+    display: block;
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for grid consistency */
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 25px;
+}
+
+.card-info h3 {
+    margin-bottom: 8px;
+    color: var(--color-accent);
+    font-size: 1.4rem;
+}
+
+.card-info .description {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+/* ABOUT ME / PHILOSOPHY */
+.philosophy-section {
+    padding: 100px 0;
+    background-color: var(--color-dark);
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Text takes 2/3, Image takes 1/3 */
+    gap: 60px;
+    align-items: center;
+}
+
+.bio-image-column img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.bio-text-column h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+}
+
+.bio-text-column h3 {
+    margin-top: 30px;
+    color: var(--color-accent);
+    font-size: 1.4rem;
+}
+
+.bio-text-column p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* CONTACT FORM */
+.contact-section {
+    padding: 80px 0 50px;
+}
+
+.sub-headline {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: var(--color-medium-dark);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
+/* ========================================
+   MAINTENANCE MODE STYLING
+======================================= */
+
+.contact-form-disabled {
+    border: 3px solid #FFA500;
+    background-color: rgba(18, 18, 18, 0.7);
+}
+
+.maintenance-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+.maintenance-notice {
+    text-align: center;
+    background: rgba(26, 26, 26, 0.95);
+    padding: 40px 30px;
+    border-radius: 8px;
+    border: 2px solid #FFA500;
+    max-width: 450px;
+    box-shadow: 0 10px 40px rgba(255, 165, 0, 0.2);
+}
+
+.maintenance-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes pulse-notice {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(255, 165, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 165, 0, 0);
+    }
+}
+
+.maintenance-title {
+    font-size: 1.5rem;
+    color: #FFA500;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.maintenance-message {
+    font-size: 0.95rem;
+    color: #D0D0D0;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.maintenance-contact {
+    background-color: rgba(255, 165, 0, 0.1);
+    padding: 15px;
+    border-left: 3px solid #FFA500;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #D0D0D0;
+}
+
+.maintenance-contact a {
+    color: #FFA500;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.maintenance-contact a:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+.maintenance-response {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* ========================================
+   DISABLED FORM STYLING
+======================================= */
+
+.contact-form-disabled .form-group input[type="text"],
+.contact-form-disabled .form-group input[type="email"],
+.contact-form-disabled .form-group textarea {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #141414;
+}
+
+.contact-form-disabled .form-group input:disabled,
+.contact-form-disabled .form-group textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.contact-form-disabled .cta-primary-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #444;
+}
+
+.contact-form-disabled .cta-primary-button:hover {
+    background-color: #444;
+    transform: none;
+}
+
+/* ========================================
+   STANDARD FORM STYLING
+======================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-light);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    color: var(--color-light);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group textarea:focus,
+.form-group input:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}
+
+.disclaimer {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 15px;
+}
+
+/* ========================================
+    5. CASE STUDY PAGE SPECIFIC STYLING (project-detail.html)
+======================================= */
+
+.case-study-page {
+    padding-bottom: 50px;
+}
+
+.project-hero-visual {
+    margin-bottom: 60px;
+}
+
+.project-hero-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.case-study-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.project-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--color-light);
+}
+
+.project-summary {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    margin-bottom: 40px;
+}
+
+/* Challenge Section */
+.challenge-section {
+    margin-bottom: 80px;
+    padding: 40px;
+    border-left: 5px solid var(--color-accent);
+    background-color: var(--color-medium-dark);
+    border-radius: 0 8px 8px 0;
+}
+
+.challenge-section h2 {
+    margin-top: 0;
+    color: var(--color-accent);
+}
+
+.content-box p {
+    margin-bottom: 15px;
+}
+.highlight-text {
+    font-style: italic;
+    padding: 10px;
+    border-left: 3px solid #555;
+    display: inline-block;
+    margin-top: 20px;
+    color: #b0b0b0;
+}
+
+/* Process Section */
+.process-section {
+    padding: 60px 0;
+    border-top: 1px solid #222;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.process-step {
+    background: var(--color-medium-dark);
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 3px solid var(--color-accent);
+    transition: box-shadow 0.3s;
+}
+.process-step:hover {
+    box-shadow: 0 8px 20px rgba(192, 144, 64, 0.15);
+}
+
+.step-title {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.technical-detail {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #b0b0b0;
+}
+
+.impact {
+    font-weight: 600;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #333;
+    font-style: italic;
+    color: #c0c0c0;
+}
+
+/* Final CTA */
+.cta-final-section {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #121212;
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+.large-cta-button {
+    padding: 20px 50px;
+    font-size: 1.1rem;
+    margin-top: 30px;
+    display: block;
+}
+
+/* ========================================
+    6. FOOTER & RESPONSIVENESS (Media Queries)
+======================================= */
+
+footer {
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.8rem;
+    background-color: var(--color-medium-dark);
+    border-top: 1px solid #222;
+    color: #888;
+}
+
+/* Mobile Optimization (max-width: 768px - Single Column) */
+@media (max-width: 768px) {
+    
+    /* General Layout Adjustments */
+    .nav-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logo {
+        margin-bottom: 15px;
+        display: block;
+    }
+    nav a {
+        margin: 0 10px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    .cta-nav-button {
+        display: block; /* Full width button on mobile */
+        margin-top: 10px;
+    }
+
+    /* Hero Adjustments */
+    .headline {
+        font-size: 2.5rem; 
+    }
+    .subheading {
+        font-size: 1.1rem;
+    }
+
+    /* Portfolio Section - Mobile Adjustments */
+    .portfolio-section .section-title {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    /* About Section Stacks Vertically */
+    .about-grid {
+        grid-template-columns: 1fr; /* Both columns stack */
+        gap: 40px;
+    }
+    .bio-text-column h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Project Cards - Mobile (1 column) */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* Forms */
+    .contact-form {
+        padding: 25px;
+    }
+
+    .cta-primary-button,
+    .cta-secondary-button {
+        /* Removes the default cursor to be replaced by the hover effect */
+        cursor: pointer;
+        border: 1px solid var(--color-accent);
+    }
+}
+
+/* ========================================
+    Tablet Optimization (768px to 1024px)
+======================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Tablet - 2 columns */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* Portfolio Section - Tablet Adjustments */
+    .portfolio-section .section-title {
+        margin-left: 20px;
+    }
+}
+
+/* ========================================
+    Desktop Optimization (1025px and above)
+======================================= */
+
+@media (min-width: 1025px) {
+    /* Desktop - 3 columns */
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* Portfolio Section - Desktop Adjustments */
+    .portfolio-section .section-title {
+        margin-left: 40px;
+    }
+}
