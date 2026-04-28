@@ -359,15 +359,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // ========================================
 /**
  * Handle browser Back button navigation
- * Reinitializes page content when user navigates back using browser history
- * Specifically refreshes AOS animations to prevent blank content display
+ * Forces a full page reload when user navigates back using browser history
+ * This ensures all content, styles, and animations are properly restored
  */
 window.addEventListener('popstate', () => {
-    console.log('🔙 Back button pressed, reinitializing page content...');
+    console.log('🔙 Back button pressed, reloading page to restore content...');
     
-    // Reinitialize AOS (Animate On Scroll) animations
-    if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-        console.log('✨ AOS animations refreshed on history navigation');
+    // Check if we're navigating back to the homepage
+    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
+        // For homepage: hard refresh to ensure full reinitialization
+        window.location.href = window.location.pathname;
+    } else {
+        // For other pages: reload with cache bypass
+        window.location.reload(true);
     }
 });
