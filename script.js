@@ -353,3 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("🔊 JavaScript Loaded: Video mute/unmute control initialized for project detail pages.");
         }
     }
+
+// ========================================
+// BROWSER HISTORY API - POPSTATE LISTENER
+// ========================================
+/**
+ * Handle browser Back button navigation
+ * Reinitializes page content when user navigates back using browser history
+ * Specifically refreshes AOS animations to prevent blank content display
+ */
+window.addEventListener('popstate', () => {
+    console.log('🔙 Back button pressed, reinitializing page content...');
+    
+    // Reinitialize AOS (Animate On Scroll) animations
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+        console.log('✨ AOS animations refreshed on history navigation');
+    }
+});
