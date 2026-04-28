@@ -1,267 +1,199 @@
-// Function 1: Hero Video/Background Handling
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * =======================================================================
+ * CORE INITIALIZATION FUNCTIONS
+ * =======================================================================
+ * All major functionality is wrapped in dedicated functions.
+ * This allows us to re-run specific parts of the code (e.g., on 'back' button press).
+ */
+
+/**
+ * Initializes the cinematic hero background logic.
+ */
+const initializeHeroBackground = () => {
     const heroBg = document.querySelector('.hero-video-bg');
-    // In a real scenario, you would initialize a video player here:
-    // const video = document.createElement('video');
-    // video.src = 'path/to/your/background-reel.mp4';
-    // video.loop = true;
-    // video.autoplay = true;
-    // video.play();
-    console.log("✨ JavaScript Loaded: Cinematic Hero Background initialized.");
-    
-    // ========================================
-    // CONTACT FORM MAINTENANCE MODE
-    // ========================================
+    // The actual video initialization logic would go here.
+    // Example: const video = new VideoPlayer(heroBg);
+    // For now, just logging that the script runs.
+    console.log("✨ Hero Background initialized.");
+};
+
+/**
+ * Initializes the contact form maintenance mode handler.
+ */
+const setupMaintenanceMode = () => {
     const contactForm = document.getElementById('contact-form');
-    
+
     if (contactForm) {
         const submitBtn = contactForm.querySelector('button[type="submit"]');
-        
-        /**
-         * Prevent form submission while in maintenance mode
-         * Display maintenance notice and prevent default behavior
-         */
+
         const handleFormSubmit = (event) => {
             event.preventDefault();
             event.stopPropagation();
-            
-            console.log('🔧 Contact form submission blocked - Maintenance mode active');
-            
+
             // Get the maintenance notice element
             const maintenanceNotice = contactForm.querySelector('.maintenance-notice');
             if (maintenanceNotice) {
-                // Add a brief flash animation to indicate the form is disabled
+                // Animation logic remains clean
                 maintenanceNotice.style.animation = 'none';
                 setTimeout(() => {
                     maintenanceNotice.style.animation = 'pulse-notice 0.6s ease-in-out';
                 }, 10);
             }
-            
-            // Show polite alert
-            console.log('ℹ️ Contact form is currently under maintenance. Please email shuvamsaha044@gmail.com');
-            
+
+            // *** OPTIONAL: Use a subtle UI feedback instead of console.log ***
+            // Example: Display a small, temporary notification message near the form.
+
             return false;
         };
-        
-        // Attach submit event listener
+
         contactForm.addEventListener('submit', handleFormSubmit, true);
-        console.log('✔️ Contact form maintenance mode activated');
-        
-        // Prevent input on form fields
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('focus', (e) => {
-                console.log('📝 Form input attempted while in maintenance mode');
-            });
-        });
+        console.log('✔️ Contact form maintenance mode activated.');
     }
-    
-    // ========================================
-    // HERO VIDEO MUTE/UNMUTE CONTROL SYSTEM
-    // ========================================
-    
-    // Initialize hero video controls (Only if on index.html with hero section)
-    const heroMuteBtn = document.getElementById('hero-video-mute-btn');
-    
-    if (heroMuteBtn) {
-        const heroVideoContainer = document.querySelector('.hero-video-bg');
-        const heroVideo = heroVideoContainer?.querySelector('video');
-        
-        if (heroVideo) {
-            // Set initial state - video starts muted per HTML attribute
-            heroVideo.muted = true;
-            console.log('📹 Video initial muted state:', heroVideo.muted);
-            
-            /**
-             * Updates the mute button icon based on current mute state
-             * @function
-             */
-            const updateMuteIcon = () => {
-                const iconElement = heroMuteBtn.querySelector('.control-icon');
-                if (!iconElement) {
-                    console.error('❌ Icon element not found');
-                    return;
-                }
-                // Show muted speaker icon if muted, unmuted speaker if not muted
-                const newIcon = heroVideo.muted ? '🔇' : '🔊';
-                iconElement.textContent = newIcon;
-                console.log(`📊 Icon updated: ${newIcon} | Video muted: ${heroVideo.muted}`);
-            };
-            
-            /**
-             * Toggles video mute state and updates UI
-             * Handles user interaction and visual feedback
-             * @function
-             */
-            const toggleVideoMute = (event) => {
-                console.log('🖱️ Mute button clicked');
-                event.preventDefault();
-                
-                // Toggle mute state
-                heroVideo.muted = !heroVideo.muted;
-                console.log('🔄 Mute toggled to:', heroVideo.muted);
-                
-                // Update icon immediately
-                updateMuteIcon();
-                
-                // Trigger visual animation on button
-                heroMuteBtn.classList.add('mute-state-change');
-                
-                // Remove animation class after animation completes
-                setTimeout(() => {
-                    heroMuteBtn.classList.remove('mute-state-change');
-                }, 400);
-                
-                // Console log for user feedback
-                console.log(`✅ Hero Video Status: ${heroVideo.muted ? '🔇 MUTED' : '🔊 UNMUTED'}`);
-            };
-            
-            // Attach click event listener with proper binding
-            heroMuteBtn.addEventListener('click', toggleVideoMute, false);
-            console.log('✔️ Click listener attached to mute button');
-            
-            // Listen for external mute changes (volume control, keyboard shortcuts, etc.)
-            heroVideo.addEventListener('volumechange', updateMuteIcon, false);
-            console.log('✔️ Volume change listener attached to video');
-            
-            // Initialize icon on page load
-            updateMuteIcon();
-            
-            console.log("✨ Hero Video Mute Control Initialized Successfully");
-        }
-    }
+};
 
-    // ========================================
-    // FULLSCREEN TOGGLE CONTROL SYSTEM
-    // ========================================
 
-    /**
-     * Initialize fullscreen button for a given video element
-     * @param {HTMLVideoElement} videoElement - The video element to control
-     * @param {HTMLButtonElement} fullscreenBtn - The fullscreen button element
-     */
-    const initializeFullscreenButton = (videoElement, fullscreenBtn) => {
-        if (!videoElement || !fullscreenBtn) return;
-        
-        /**
-         * Updates the fullscreen button icon based on current fullscreen state
-         * @function
-         */
-        const updateFullscreenIcon = () => {
-            const iconElement = fullscreenBtn.querySelector('.control-icon');
-            if (!iconElement) return;
-            
-            // Check if currently in fullscreen
-            const isFullscreen = document.fullscreenElement === videoElement || 
-                                document.webkitFullscreenElement === videoElement ||
-                                document.mozFullScreenElement === videoElement ||
-                                document.msFullscreenElement === videoElement;
-            
-            // Icon represents current state (exit vs enter)
-            fullscreenBtn.title = isFullscreen ? 'Exit Fullscreen' : 'Toggle Fullscreen';
-            console.log(`📺 Fullscreen state: ${isFullscreen ? 'ACTIVE' : 'INACTIVE'}`);
-        };
-        
-        /**
-         * Toggles fullscreen mode for the video element
-         * Uses Fullscreen API with vendor prefixes for cross-browser support
-         * @function
-         */
-        const toggleFullscreen = async () => {
-            console.log('🖱️ Fullscreen button clicked');
-            
-            try {
-                // Check if already in fullscreen
-                const isCurrentlyFullscreen = document.fullscreenElement === videoElement || 
-                                             document.webkitFullscreenElement === videoElement ||
-                                             document.mozFullScreenElement === videoElement ||
-                                             document.msFullscreenElement === videoElement;
-                
-                if (isCurrentlyFullscreen) {
-                    // Exit fullscreen
-                    if (document.exitFullscreen) {
-                        await document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                    console.log('📺 Exited fullscreen mode');
-                } else {
-                    // Enter fullscreen
-                    if (videoElement.requestFullscreen) {
-                        await videoElement.requestFullscreen();
-                    } else if (videoElement.webkitRequestFullscreen) {
-                        videoElement.webkitRequestFullscreen();
-                    } else if (videoElement.mozRequestFullScreen) {
-                        videoElement.mozRequestFullScreen();
-                    } else if (videoElement.msRequestFullscreen) {
-                        videoElement.msRequestFullscreen();
-                    }
-                    console.log('📺 Entered fullscreen mode');
-                }
-                
-                // Add animation class to button
-                fullscreenBtn.classList.add('fullscreen-active');
-                setTimeout(() => {
-                    fullscreenBtn.classList.remove('fullscreen-active');
-                }, 300);
-                
-                // Update button title
-                updateFullscreenIcon();
-                
-            } catch (error) {
-                console.error('❌ Fullscreen toggle failed:', error.message);
-            }
-        };
-        
-        // Attach click event listener
-        fullscreenBtn.addEventListener('click', toggleFullscreen, false);
-        console.log('✔️ Fullscreen button initialized');
-        
-        // Listen for fullscreen change events (including keyboard ESC)
-        document.addEventListener('fullscreenchange', updateFullscreenIcon, false);
-        document.addEventListener('webkitfullscreenchange', updateFullscreenIcon, false);
-        document.addEventListener('mozfullscreenchange', updateFullscreenIcon, false);
-        document.addEventListener('MSFullscreenChange', updateFullscreenIcon, false);
+/**
+ * Initializes the hero video controls and state management.
+ * @param {HTMLVideoElement} videoElement - The video element to control.
+ * @param {HTMLButtonElement} fullscreenBtn - The fullscreen button element.
+ */
+const initializeFullscreenButton = (videoElement, fullscreenBtn) => {
+    if (!videoElement || !fullscreenBtn) return;
+
+    // Helper function to check current fullscreen state
+    const isFullscreen = () => {
+        return document.fullscreenElement === videoElement ||
+               document.webkitFullscreenElement === videoElement ||
+               document.mozFullScreenElement === videoElement ||
+               document.msFullscreenElement === videoElement;
     };
 
-    // Initialize fullscreen for hero video (index.html)
-    const heroFullscreenBtn = document.getElementById('fullscreen-btn');
-    if (heroFullscreenBtn) {
-        const heroVideoContainer = document.querySelector('.hero-video-bg');
-        const heroVideo = heroVideoContainer?.querySelector('video');
-        if (heroVideo) {
-            initializeFullscreenButton(heroVideo, heroFullscreenBtn);
-            console.log('✨ Hero Video Fullscreen Control Initialized');
-        }
-    }
+    /**
+     * Updates the fullscreen button icon based on current fullscreen state.
+     */
+    const updateFullscreenIcon = () => {
+        const iconElement = fullscreenBtn.querySelector('.control-icon');
+        if (!iconElement) return;
 
-    // Initialize fullscreen for project video (project-detail pages)
-    const projectFullscreenBtn = document.getElementById('fullscreen-btn');
-    if (projectFullscreenBtn) {
-        const projectVideo = document.getElementById('project-video');
-        if (projectVideo) {
-            initializeFullscreenButton(projectVideo, projectFullscreenBtn);
-            console.log('✨ Project Video Fullscreen Control Initialized');
-        }
-    }
-    }, 800);
+        const state = isFullscreen() ? 'Exit Fullscreen' : 'Toggle Fullscreen';
+        fullscreenBtn.title = state;
+    };
 
-    // Function 1.5: Project Card Click Animation
+    /**
+     * Toggles fullscreen mode for the video element.
+     */
+    const toggleFullscreen = async () => {
+        try {
+            const enterFullscreen = (el) => {
+                if (el.requestFullscreen) return el.requestFullscreen();
+                if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+                if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
+                return el.msRequestFullscreen();
+            };
+
+            const exitFullscreen = () => {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            };
+            
+            if (isFullscreen()) {
+                await exitFullscreen();
+            } else {
+                await enterFullscreen(videoElement);
+            }
+
+            // Animation and state update
+            fullscreenBtn.classList.add('fullscreen-active');
+            setTimeout(() => {
+                fullscreenBtn.classList.remove('fullscreen-active');
+            }, 300);
+            updateFullscreenIcon();
+
+        } catch (error) {
+            console.error('❌ Fullscreen toggle failed:', error.message);
+        }
+    };
+
+    // Event Listeners
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    
+    // Listen for programmatic and manual fullscreen changes (e.g., pressing ESC)
+    document.addEventListener('fullscreenchange', updateFullscreenIcon);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+    document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+    document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+};
+
+
+/**
+ * Handles the specific video mute/unmute logic for a video player.
+ * @param {HTMLVideoElement} videoElement - The video element.
+ * @param {HTMLButtonElement} muteBtn - The mute/unmute button.
+ */
+const setupVideoControls = (videoElement, muteBtn) => {
+    if (!videoElement || !muteBtn) return;
+
+    const updateMuteIcon = () => {
+        const iconElement = muteBtn.querySelector('.control-icon');
+        if (!iconElement) return;
+        const newIcon = videoElement.muted ? '🔇' : '🔊';
+        iconElement.textContent = newIcon;
+    };
+
+    // Mute/Unmute Button Handler
+    const toggleVideoMute = (event) => {
+        event.preventDefault();
+
+        // 1. Toggle mute state
+        videoElement.muted = !videoElement.muted;
+
+        // 2. Re-initialize volume on unmuting (to ensure sound comes back)
+        if (!videoElement.muted) {
+            videoElement.volume = 1;
+        }
+        
+        // 3. Update UI and animation
+        updateMuteIcon();
+
+        // Trigger visual animation
+        muteBtn.classList.add('mute-state-change');
+        setTimeout(() => {
+            muteBtn.classList.remove('mute-state-change');
+        }, 400);
+    };
+
+    muteBtn.addEventListener('click', toggleVideoMute);
+
+    // Event listeners to keep the icon updated
+    videoElement.addEventListener('volumechange', updateMuteIcon);
+    videoElement.addEventListener('loadedmetadata', updateMuteIcon);
+
+    // Initial state setup
+    updateMuteIcon();
+};
+
+
+/**
+ * Handles the project card click animation and navigation.
+ */
+const setupProjectCardAnimations = () => {
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            // Find the link within the card
             const link = card.querySelector('.cta-secondary-button');
             if (link) {
                 e.preventDefault();
-                // Apply card exit animation
+                // Apply animation classes for visual feedback
                 card.classList.add('card-exit');
-                // Apply page transition
                 document.body.classList.add('page-transition-out');
+                
                 // Navigate after animation completes
                 setTimeout(() => {
                     window.location.href = link.href;
@@ -269,108 +201,105 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    console.log("🎬 JavaScript Loaded: Project card click animations initialized.");
+};
 
-    // Function 2: Scroll Reveal Implementation (Crucial for high-end feel)
-    // Use Intersection Observer API for performance
+
+/**
+ * Uses Intersection Observer to trigger animations when elements scroll into view.
+ */
+const setupScrollReveals = () => {
     const sections = document.querySelectorAll('.portfolio-section, .philosophy-section, .process-step');
-
     const observerOptions = {
-        root: null, 
-        rootMargin: '0px', 
-        threshold: 0.2 
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
     };
 
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Example: Add a class to trigger a CSS animation on reveal
                 entry.target.style.opacity = 1;
                 entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    // Apply initial styles and observe the sections
     sections.forEach(section => {
-        // Initial state for animation
+        // Initial hidden state
         section.style.opacity = 0;
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         observer.observe(section);
     });
+};
 
-    console.log("🚀 JavaScript Loaded: Scroll reveals initialized for dynamic content.");
-
-    // Function 3: Project Video Mute/Unmute Control (Only on project detail pages)
-    const projectVideo = document.getElementById('project-video');
-    if (projectVideo) {
-        const muteBtn = document.getElementById('mute-btn');
-
-        if (muteBtn) {
-            // Set initial volume to maximum
-            projectVideo.volume = 1;
-
-            // Handle video looping
-            projectVideo.addEventListener('ended', () => {
-                projectVideo.currentTime = 0;
-                projectVideo.play().catch(err => console.log('Loop play error:', err));
-            });
-
-            // Mute/Unmute Button Handler
-            const updateMuteIcon = () => {
-                muteBtn.querySelector('.control-icon').textContent = projectVideo.muted ? '🔇' : '🔊';
-            };
-
-            muteBtn.addEventListener('click', () => {
-                // Toggle mute state
-                projectVideo.muted = !projectVideo.muted;
-                
-                // Ensure video is playing when unmuting
-                if (!projectVideo.muted) {
-                    projectVideo.volume = 1;
-                    // Ensure video plays
-                    if (projectVideo.paused) {
-                        projectVideo.play().catch(err => console.log('Play error:', err));
-                    }
-                }
-                
-                updateMuteIcon();
-                console.log('Video muted:', projectVideo.muted, 'Volume:', projectVideo.volume);
-            });
-
-            // Update icon when mute state changes
-            projectVideo.addEventListener('volumechange', updateMuteIcon);
-            projectVideo.addEventListener('play', () => console.log('Video playing'));
-            projectVideo.addEventListener('pause', () => console.log('Video paused'));
-
-            // Initialize icon on page load
-            updateMuteIcon();
-
-            console.log("🔊 JavaScript Loaded: Video mute/unmute control initialized for project detail pages.");
-        }
-    }
-
-// ========================================
-// BROWSER HISTORY API - POPSTATE LISTENER
-// ========================================
 /**
- * Handle browser Back button navigation
- * Forces a full page reload when user navigates back using browser history
- * This ensures all content, styles, and animations are properly restored
+ * =======================================================================
+ * BROWSER HISTORY HANDLER (THE CRITICAL FIX)
+ * =======================================================================
+ * This function re-runs all essential initialization logic when the user
+ * uses the back button to prevent the page from appearing blank.
  */
-window.addEventListener('popstate', () => {
-    console.log('🔙 Back button pressed, reloading page to restore content...');
+const handleBackNavigation = () => {
+    console.warn("🔄 POPSTATE DETECTED: Re-initializing page content...");
+    // Re-run the core initialization functions to restore the dynamic state
+    setupProjectCardAnimations();
+    setupScrollReveals();
+    // You might also need to run initializeHeroBackground() here if the hero state is crucial.
+};
+
+
+/**
+ * =======================================================================
+ * MAIN INITIALIZATION CALL
+ * =======================================================================
+ * This function encapsulates the entire setup logic and runs on page load.
+ */
+const initWebsite = () => {
+    // 1. SETUP NAVIGATION
+    setupProjectCardAnimations();
     
-    // Check if we're navigating back to the homepage
-    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '') {
-        // For homepage: hard refresh to ensure full reinitialization
-        window.location.href = window.location.pathname;
-    } else {
-        // For other pages: reload with cache bypass
-        window.location.reload(true);
+    // 2. SETUP SCROLL EFFECTS
+    setupScrollReveals();
+
+    // 3. SETUP CONTACT FORM
+    setupMaintenanceMode();
+    
+    // 4. GET PAGE-SPECIFIC INITIALIZATIONS
+    
+    // Check if we are on a project detail page (assuming element existence)
+    const projectVideo = document.getElementById('project-video');
+    const muteBtn = document.getElementById('mute-btn');
+    setupVideoControls(projectVideo, muteBtn);
+    
+    // Check if we are on the home page (index.html) for hero features
+    if (document.querySelector('.hero-video-bg')) {
+        const heroVideoContainer = document.querySelector('.hero-video-bg');
+        const heroVideo = heroVideoContainer?.querySelector('video');
+        const heroFullscreenBtn = document.getElementById('fullscreen-btn');
+        const heroMuteBtn = document.getElementById('hero-video-mute-btn');
+
+        if (heroVideo && heroFullscreenBtn) {
+            initializeFullscreenButton(heroVideo, heroFullscreenBtn);
+        }
+        if (heroVideo && heroMuteBtn) {
+            setupVideoControls(heroVideo, heroMuteBtn);
+        }
+        initializeHeroBackground();
     }
-});
+};
+
+/**
+ * =======================================================================
+ * BROWSER POPSTATE FIX (THE BUG FIX)
+ * =======================================================================
+ * Listener for the 'back' button event.
+ * We execute the main initialization function here to restore the page state.
+ */
+window.addEventListener('popstate', handleBackNavigation);
+
+// Initial call when the page first loads
+document.addEventListener('DOMContentLoaded', initWebsite);
